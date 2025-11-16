@@ -1,0 +1,76 @@
+/* Custom Theme Variables (used for primary color definitions in custom CSS) */
+:root {
+    --primary-green: #047857;
+}
+
+/* Base Body Styles (font and transition, color is handled by Tailwind dark: classes) */
+body {
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Custom Dark Mode Styles using body.dark */
+body.dark {
+    background-color: #1f2937; /* Dark Gray Background */
+    color: #f3f4f6; /* Light text */
+}
+body.dark .card-bg {
+    background-color: #374151; /* Slightly lighter card */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* Light Mode Styles */
+body:not(.dark) {
+    background-color: #f3f4f6; /* Light Background */
+}
+body:not(.dark) .card-bg {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+}
+
+/* Button Styling (for selection state) */
+.btn-option {
+    transition: all 0.2s;
+    border: 1px solid #d1d5db; /* Light gray border */
+}
+/* Style for the selected (locked) answer - Neutral highlight */
+.btn-selected {
+    background-color: #d1d5db; 
+    border-color: var(--primary-green);
+    --tw-ring-color: var(--primary-green);
+    --tw-ring-opacity: 1;
+}
+.dark .btn-selected {
+    background-color: #4b5563 !important; 
+}
+
+/* Hide screens initially for JS control */
+.screen { display: none; }
+
+/* Pie Chart CSS for results */
+.pie-chart-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    position: relative;
+}
+/* Inner circle for the donut effect */
+.pie-chart-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: inherit; /* Inherit dark/light background from parent (.card-bg) */
+    border-radius: 50%;
+}
+
+.dark .pie-chart-container::after {
+    background-color: #374151; /* Dark card color */
+}
+body:not(.dark) .pie-chart-container::after {
+    background-color: #ffffff; /* Light card color */
+}
